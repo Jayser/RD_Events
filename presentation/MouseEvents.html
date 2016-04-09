@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MouseEvents</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div class="offset-b-4">
+        <div id="eClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Click</div>
+        <div id="eDbClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Contextmenu</div>
+        <div id="eUpDownClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">DUC</div>
+    </div>
+    <div class="offset-b-4">
+        <div id="eMove" class="w100 h100 bg-light-blue text-center lh100 text-white inline-block">Move/Out</div>
+        <div id="eOver" class="w100 h100 bg-light-blue text-center lh100 text-white inline-block">MouseOver</div>
+        <div id="eCordinate" class="w100 h100 bg-light-blue text-center text-white inline-block lh100">x: 0 y: 0</div>
+    </div>
+
+    <div id="eOutRelated" class="w100 h100 bg-tomato text-center lh100 inline-block">
+        <div class="w50 h50 bg-light-blue inline-block offset-t-25"></div>
+    </div>
+
+    <script>
+        eClick.addEventListener('click', function (e) {
+            e.preventDefault();
+            console.log('trigger click event!');
+        });
+        eDbClick.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            console.log('trigger contextmenu event!');
+        });
+        eUpDownClick.addEventListener('click', function (e) {
+            e.preventDefault();
+            console.log('trigger click event!');
+        });
+        eUpDownClick.addEventListener('mouseup', function (e) {
+            e.preventDefault();
+            console.log('trigger mouseup event!');
+        });
+        eUpDownClick.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            console.log('trigger mousedown event!');
+        });
+        eMove.addEventListener('mousemove', function (e) {
+            e.preventDefault();
+            console.log('trigger mousemove event!');
+        });
+        eCordinate.addEventListener('mousemove', function (e) {
+            e.preventDefault();
+            eCordinate.innerHTML = 'x: ' + e.clientX + ' y: ' + e.clientY;
+        });
+        eMove.addEventListener('mouseout', function (e) {
+            e.preventDefault();
+            console.log('trigger mouseout event!');
+        });
+        eOver.addEventListener('mouseover', function (e) {
+            e.preventDefault();
+            console.log('trigger mouseover event!');
+        });
+        eOutRelated.addEventListener('mouseover', function (e) {
+            e.preventDefault();
+            console.log(e.relatedTarget);
+        });
+    </script>
+</body>
+</html>

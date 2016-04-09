@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventTest</title>
+    <link rel="stylesheet" href="../presentation/css/main.css">
+    <script src="js/event.js"></script>
+</head>
+<body>
+
+<h1 class="text-center">Test Remove Event</h1>
+
+<div class="offset-b-4">
+    <div id="eClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Click</div>
+    <div id="eClick2" class="w100 h100 bg-light-blue text-center lh100 text-white inline-block">Click</div>
+</div>
+
+<script>
+
+    // Test 1
+    $event.addEvent(document.getElementById('eClick'), 'click', function (e) {
+        e.preventDefault();
+        console.log('trigger click event!');
+    });
+    $event.addEvent(window, "load", function () {
+        console.log('load');
+    });
+    $event.addEvent(document, "DOMContentLoaded", function () {
+        console.log('DOMContentLoaded');
+    });
+
+    $event.removeEvent(document.getElementById('eClick'), 'click');
+    $event.removeEvent(window, "load");
+    $event.removeEvent(document, "DOMContentLoaded");
+
+    // Test 2
+    function fn1(e) {
+        e.preventDefault();
+        console.log('fn1', 'trigger click event!');
+    }
+    function fn2(e) {
+        e.preventDefault();
+        console.log('fn2', 'trigger click event!');
+    }
+    $event.addEvent(document.getElementById('eClick2'), 'click', fn1);
+    $event.addEvent(document.getElementById('eClick2'), 'click', fn2);
+    $event.removeEvent(document.getElementById('eClick2'), 'click', fn2);
+</script>
+
+</body>
+</html>

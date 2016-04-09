@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>keyBoardEvents</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <label class="isBlock">
+        <span class="valign-top">Description:</span>
+        <textarea id="description" class="w200 h100"></textarea>
+        <div id="descriptionResult"></div>
+    </label>
+
+    <script>
+        description.addEventListener('keypress', function (e) {
+            e.preventDefault();
+            var text = e.type +
+                    ' keyCode=' + e.keyCode +
+                    ' which=' + e.which +
+                    ' charCode=' + e.charCode +
+                    ' char=' + String.fromCharCode(e.keyCode || e.charCode) +
+                    (e.shiftKey ? ' +shift' : '') +
+                    (e.ctrlKey ? ' +ctrl' : '') +
+                    (e.altKey ? ' +alt' : '') +
+                    (e.metaKey ? ' +meta' : '') + "\n";
+
+            console.log(text);
+        });
+    </script>
+</body>
+</html>

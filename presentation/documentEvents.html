@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Form</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <script>
+        window.addEventListener("load", function () {
+            var img = document.images[0];
+            var imgSize = img.offsetWidth + "x" + img.offsetHeight;
+            console.log('load,', 'Размер картинки: ' + imgSize);
+        });
+        window.addEventListener('unload', function (event) {
+            console.log('trigger unload event');
+        });
+        window.onbeforeunload = function () {
+            return 'Данные не сохранены. Точно перейти?';
+        };
+        document.addEventListener("DOMContentLoaded", function () {
+            var img = document.images[0];
+            var imgSize = img.offsetWidth + "x" + img.offsetHeight;
+            console.log('DOMContentLoaded,', 'Размер картинки: ' + imgSize);
+        });
+        image.addEventListener('load', function () {
+            console.log('image has successfully loaded');
+        });
+        image.addEventListener('error', function () {
+            console.log('image has failed to load');
+        });
+    </script>
+    <img id="image" src="https://pbs.twimg.com/profile_images/473506797462896640/_M0JJ0v8.png" alt="">
+    <img id="imageError" src="https://pbs.twimg.com/profile_images/error" alt="">
+    <a href="http://google.com" id="exit">Выйти</a>
+</body>
+</html>

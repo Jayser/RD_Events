@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eventsOnElement</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <form id="testForm" class="text-right w300 block-center">
+        <label class="offet-b-5 isBlock">
+            First Name:
+            <input type="text" id="firstName" placeholder="Input first name">
+        </label>
+        <label class="offet-b-5 isBlock">
+            Last Name:
+            <input type="text" id="lastName" placeholder="Input last name">
+            <div id="lastNameResult"></div>
+        </label>
+        <!--label class="offet-b-5 isBlock">
+          <span class="valign-top">Description:</span>
+          <textarea id="description" class="w167" placeholder="past/copy/cut"></textarea>
+          <div id="descriptionResult"></div>
+        </label-->
+        <input type="submit">
+    </form>
+
+    <script>
+        testForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            console.log('trigger submit event!');
+        });
+
+        firstName.addEventListener('focus', function (e) {
+            e.preventDefault();
+            console.log('trigger focus event!');
+        });
+
+        firstName.addEventListener('blur', function (e) {
+            e.preventDefault();
+            console.log('trigger blur event!');
+        });
+
+        firstName.addEventListener('change', function (e) {
+            e.preventDefault();
+            console.log('trigger change event!');
+        });
+
+        lastName.addEventListener('input', function (e) {
+            e.preventDefault();
+            lastNameResult.innerHTML = lastName.value;
+        });
+    </script>
+</body>
+</html>

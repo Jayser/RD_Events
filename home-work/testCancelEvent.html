@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventTest</title>
+    <link rel="stylesheet" href="../presentation/css/main.css">
+    <script src="js/event.js"></script>
+</head>
+<body>
+
+<h1 class="text-center">Test Cancel Event</h1>
+
+<div class="offset-b-4">
+    <div id="eClick1" class="offset-in-10 w100 h100 bg-tomato text-center lh100 text-white inline-block">
+        <div id="eClick2" class="offset-in-10 w100 h100 bg-light-blue text-center lh100 text-white inline-block">
+            <div id="eClick3" class="offset-in-10 w100 h100 bg-tomato text-center lh100 text-white inline-block"></div>
+        </div>
+    </div>
+    <a href="google.com" class="isBlock offset-t-25" id="link">google.com</a>
+    <div id="eClick4" class="offset-in-10 w100 h100 bg-tomato text-center lh100 text-white inline-block"></div>
+</div>
+
+<script>
+
+    function fn1(e) {console.log('fn1', 'trigger click event!');}
+    function fn2(e) {console.log('fn2', 'trigger click event!');}
+    function fn3(e) {
+        e.stopPropagation();
+        console.log('fn3', 'trigger click event!');
+    }
+    $event.addEvent(document.getElementById('eClick1'), 'click', fn1);
+    $event.addEvent(document.getElementById('eClick2'), 'click', fn2);
+    $event.addEvent(document.getElementById('eClick3'), 'click', fn3);
+
+    function fn11(e) {
+        e.stopNow = true;
+        console.log('fn1', 'trigger click event!');
+    }
+    function fn22(e) {console.log('fn2', 'trigger click event!');}
+    function fn33(e) {console.log('fn3', 'trigger click event!');}
+    $event.addEvent(document.getElementById('eClick4'), 'click', fn11);
+    $event.addEvent(document.getElementById('eClick4'), 'click', fn22);
+    $event.addEvent(document.getElementById('eClick4'), 'click', fn33);
+
+    $event.addEvent(document.getElementById('link'), 'click', function (e) {
+        e.preventDefault();
+        console.log('trigger click event!');
+    });
+
+
+</script>
+
+</body>
+</html>

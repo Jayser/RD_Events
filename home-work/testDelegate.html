@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventTest</title>
+    <link rel="stylesheet" href="../presentation/css/main.css">
+    <script src="js/event.js"></script>
+</head>
+<body>
+
+<h1 class="text-center">Test Delegate Event</h1>
+
+<div class="offset-b-4">
+    <ul id="list">
+        <li><span>text-1</span></li>
+        <li><span>text-2</span></li>
+        <li><span>text-3</span></li>
+    </ul>
+    <input type="button" id="addItem" value="add more">
+</div>
+
+<script>
+    $event.addEvent(document.getElementById('addItem'), 'click', function (e) {
+        var li = document.createElement('li');
+        var ln = document.querySelectorAll('#list li').length + 1;
+        li.innerHTML = '<span>text-' + ln + '</span>';
+        document.getElementById('list').appendChild(li);
+    });
+    $event.delegate(document.getElementById('list'), 'click', function (e) {
+        console.log(this, e.target);
+    });
+</script>
+
+</body>
+</html>

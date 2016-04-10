@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventTest</title>
+    <link rel="stylesheet" href="../presentation/css/main.css">
+    <script src="js/event.js"></script>
+</head>
+<body>
+
+<h1 class="text-center">Test Add Event</h1>
+
+<h3>Mouse Events</h3>
+<div class="offset-b-4">
+    <div id="eClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Click</div>
+    <div id="eContextmenu" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Contextmenu</div>
+    <div id="eUpDownClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">DUC</div>
+</div>
+<div class="offset-b-4">
+    <div id="eMove" class="w100 h100 bg-light-blue text-center lh100 text-white inline-block">Move/Out</div>
+    <div id="eOver" class="w100 h100 bg-light-blue text-center lh100 text-white inline-block">MouseOver</div>
+    <div id="eCordinate" class="w100 h100 bg-light-blue text-center text-white inline-block lh100">x: 0 y: 0</div>
+</div>
+<div id="eOutRelated" class="w100 h100 bg-tomato text-center lh100 inline-block">
+    <div class="w50 h50 bg-light-blue inline-block offset-t-25"></div>
+</div>
+
+<h3>Form Events</h3>
+<form id="testForm" class="text-right w300">
+    <label class="offet-b-5 isBlock">
+        First Name:
+        <input type="text" id="firstName" placeholder="Input first name">
+    </label>
+    <label class="offet-b-5 isBlock">
+        Last Name:
+        <input type="text" id="lastName" placeholder="Input last name">
+        <div id="lastNameResult"></div>
+    </label>
+    <input type="submit">
+</form>
+
+<h3>Keyboard Events</h3>
+<label class="isBlock">
+    <span class="valign-top">Description:</span>
+    <textarea id="description" class="w200 h100"></textarea>
+    <div id="descriptionResult"></div>
+</label>
+
+<script>
+
+    // Mouse Events
+
+    /* =============== called only once =================*/
+    function fn(e) {
+        e.preventDefault();
+        console.log('trigger click event!');
+    }
+    $event.addEvent(document.getElementById('eClick'), 'click', fn);
+    $event.addEvent(document.getElementById('eClick'), 'click', fn);
+    $event.addEvent(document.getElementById('eClick'), 'click', fn);
+
+    $event.addEvent(document.getElementById('eContextmenu'), 'contextmenu', function (e) {
+        e.preventDefault();
+        console.log('trigger contextmenu event!');
+    });
+    $event.addEvent(document.getElementById('eUpDownClick'), 'click', function (e) {
+        e.preventDefault();
+        console.log('trigger click event!');
+    });
+    $event.addEvent(document.getElementById('eUpDownClick'), 'mouseup', function (e) {
+        e.preventDefault();
+        console.log('trigger mouseup event!');
+    });
+    $event.addEvent(document.getElementById('eUpDownClick'), 'mousedown', function (e) {
+        e.preventDefault();
+        console.log('trigger mousedown event!');
+    });
+    $event.addEvent(document.getElementById('eMove'), 'mousemove', function (e) {
+        e.preventDefault();
+        console.log('trigger mousemove event!');
+    });
+    $event.addEvent(document.getElementById('eCordinate'), 'mousemove', function (e) {
+        e.preventDefault();
+        document.getElementById('eCordinate').innerHTML = 'x: ' + e.clientX + ' y: ' + e.clientY;
+    });
+    $event.addEvent(document.getElementById('eMove'), 'mouseout', function (e) {
+        e.preventDefault();
+        console.log('trigger mouseout event!');
+    });
+    $event.addEvent(document.getElementById('eOver'), 'mouseover', function (e) {
+        e.preventDefault();
+        console.log('trigger mouseover event!');
+    });
+    $event.addEvent(document.getElementById('eOutRelated'), 'mouseover', function (e) {
+        e.preventDefault();
+        console.log(e.relatedTarget);
+    });
+
+    // Form Events
+    $event.addEvent(document.getElementById('testForm'), 'submit', function (e) {
+        e.preventDefault();
+        console.log('trigger submit event!');
+    });
+    $event.addEvent(document.getElementById('firstName'), 'focus', function (e) {
+        e.preventDefault();
+        console.log('trigger focus event!');
+    });
+    $event.addEvent(document.getElementById('firstName'), 'blur', function (e) {
+        e.preventDefault();
+        console.log('trigger blur event!');
+    });
+    $event.addEvent(document.getElementById('firstName'), 'change', function (e) {
+        e.preventDefault();
+        console.log('trigger change event!');
+    });
+    $event.addEvent(document.getElementById('lastName'), 'input', function (e) {
+        e.preventDefault();
+        document.getElementById('lastNameResult').innerHTML = document.getElementById('lastName').value;
+    });
+
+    // Keyboard Events
+    $event.addEvent(document.getElementById('description'), 'keypress', function (e) {
+        e.preventDefault();
+        var text = e.type +
+                ' keyCode=' + e.keyCode +
+                ' char=' + String.fromCharCode(e.keyCode) +
+                (e.shiftKey ? ' +shift' : '') +
+                (e.ctrlKey ? ' +ctrl' : '') +
+                (e.altKey ? ' +alt' : '') +
+                (e.metaKey ? ' +meta' : '') + "\n";
+
+        console.log(text);
+    });
+
+    // Document Events
+    $event.addEvent(window, "load", function () {
+        var img = document.images[0];
+        var imgSize = img.offsetWidth + "x" + img.offsetHeight;
+        console.log('load,', 'Размер картинки: ' + imgSize);
+    });
+    window.addEventListener('unload', function (event) {
+        console.log('trigger unload event');
+    });
+    window.onbeforeunload = function () {
+        return 'Данные не сохранены. Точно перейти?';
+    };
+    $event.addEvent(document, "DOMContentLoaded", function () {
+        var img = document.images[0];
+        var imgSize = img.offsetWidth + "x" + img.offsetHeight;
+        console.log('DOMContentLoaded,', 'Размер картинки: ' + imgSize);
+
+        $event.addEvent(document.getElementById('image'), 'load', function () {
+            console.log('load', 'image has successfully loaded');
+        });
+        $event.addEvent(document.getElementById('imageError'), 'error', function () {
+            console.log('error', 'image has failed to load');
+        });
+    });
+
+</script>
+
+<h3>Document Events</h3>
+<img id="imageError" src="https://pbs.twimg.com/profile_images/error" alt="">
+<img id="image" src="https://pbs.twimg.com/profile_images/473506797462896640/_M0JJ0v8.png" alt="">
+<a href="http://google.com" id="exit">Выйти</a>
+
+
+</body>
+</html>

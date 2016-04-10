@@ -9,7 +9,7 @@
 
     <div class="offset-b-4">
         <div id="eClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Click</div>
-        <div id="eDbClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Contextmenu</div>
+        <div id="eContextmenu" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Contextmenu</div>
         <div id="eUpDownClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">DUC</div>
     </div>
     <div class="offset-b-4">
@@ -27,7 +27,7 @@
             e.preventDefault();
             console.log('trigger click event!');
         });
-        eDbClick.addEventListener('contextmenu', function (e) {
+        eContextmenu.addEventListener('contextmenu', function (e) {
             e.preventDefault();
             console.log('trigger contextmenu event!');
         });

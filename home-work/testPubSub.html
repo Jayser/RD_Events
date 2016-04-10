@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventTest</title>
+    <link rel="stylesheet" href="../presentation/css/main.css">
+    <script src="js/event.js"></script>
+</head>
+<body>
+
+<h1 class="text-center">Test Pub/Sub</h1>
+
+<script>
+    var subscription = $event.subscribe('name', function(obj) {
+        console.log('pub/sub', obj);
+    });
+
+    $event.publish('name', {data: 'sarhan'});
+</script>
+
+</body>
+</html>
+

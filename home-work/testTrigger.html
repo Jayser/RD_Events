@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventTest</title>
+    <link rel="stylesheet" href="../presentation/css/main.css">
+    <script src="js/event.js"></script>
+</head>
+<body>
+
+<h1 class="text-center">Test Trigger</h1>
+<div class="offset-b-4">
+    <div id="eClick" class="w100 h100 bg-tomato text-center lh100 text-white inline-block">Click</div>
+</div>
+<script>
+
+    $event.addEvent(document.getElementById('eClick'), 'click', function (e) {
+        e.preventDefault();
+        console.log(e, 'trigger '+ e.type +' event!');
+    });
+
+    /**
+     * UIEvent
+     * FocusEvent
+     * MouseEvent
+     * WheelEvent
+     * KeyboardEvent
+     * CompositionEvent
+     *
+     * https://www.w3.org/TR/uievents
+     */
+
+    function trigger (el, type) {
+        var event;
+
+        if (document.createEvent) {
+            event = document.createEvent("MouseEvent");
+            event.initEvent(type, true, true);
+        } else {
+            event = document.createEventObject();
+            event.eventType = type;
+        }
+
+        event.eventName = type;
+
+        if (document.createEvent) {
+            el.dispatchEvent(event);
+        } else {
+            el.fireEvent("on" + event.eventType, event);
+        }
+    }
+
+    trigger(document.getElementById('eClick'), 'click');
+
+
+</script>
+
+</body>
+</html>
+

@@ -1,18 +1,3 @@
-var timeDebugger = (function () {
-    var time = 0;
-    return {
-        setTime: function () {
-            time = Date.now();
-        },
-        getTime: function () {
-            var timeStemp = parseInt((Date.now() - time).toString(), 10);
-            if (timeStemp) {
-                console.log(timeStemp + ' milliseconds');
-            }
-        }
-    }
-}());
-
 function easySlider(cfg) {
 
     // Constants
@@ -62,7 +47,6 @@ function easySlider(cfg) {
     }
 
     function runSlide() {
-        timeDebugger.setTime();
         animationIndex = setTimeout(offsetSlide, animationAfter);
     }
 
@@ -99,7 +83,6 @@ function easySlider(cfg) {
              * isAnimationFinished = false
              * animation in process
              * */
-            timeDebugger.getTime();
             if (isAnimationFinished && !isOverSlider) {
                 runSlide();
             }
@@ -153,8 +136,6 @@ function easySlider(cfg) {
         if (isToBack) {
             newOffset = (+previewsOffset) + itemWidth;
         }
-
-        timeDebugger.setTime();
 
         // Move
         if (previewsOffset >= sliderLimit) {

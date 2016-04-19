@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+.easySlider {
+    width: 400px;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+.easySlider__list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 400px;
+    transition-property: left;
+    height: 200px;
+}
+
+.easySlider__item {
+    float: left;
+    display: block;
+}

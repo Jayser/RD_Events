@@ -27,7 +27,6 @@ function easySlider(cfg) {
     // Other
     var animationIndex, mouseOffsetStartPoint;
 
-
     // Calculations Infinity slider
     function resetSlider(toDefault) {
         var offsetLeft = parseInt(root.style.left, 10);

@@ -10,7 +10,7 @@ function easySlider(cfg) {
     var mouseOffsetToMove = cfg.mouseOffsetToMove || 50;
     var animationAfter = cfg.animationAfter || 2000;
     var moduleId = cfg.moduleId || 'easySlider';
-    var autoScroll = cfg.autoScroll || true;
+    var autoScroll = cfg.autoScroll === 'false' ? false : true;
 
     // Selectors
     var root = document.getElementById(moduleId);
@@ -93,18 +93,22 @@ function easySlider(cfg) {
         root.addEventListener('mousemove', function (e) {
             e.preventDefault();
             // Stop auto scroll
-            clearTimeout(animationIndex);
-            isOverSlider = true;
-        });
-        root.addEventListener('mousedown', function (e) {
-            e.preventDefault();
-            mouseOffsetStartPoint = e.clientX;
+            if (autoScroll) {
+                clearTimeout(animationIndex);
+                isOverSlider = true;
+            }
         });
         root.addEventListener('mouseout', function (e) {
             e.preventDefault();
             // Start auto scroll
-            isOverSlider = false;
-            runSlide();
+            if (autoScroll) {
+                isOverSlider = false;
+                runSlide();
+            }
+        });
+        root.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            mouseOffsetStartPoint = e.clientX;
         });
         root.addEventListener('mouseup', function (e) {
             e.preventDefault();
@@ -149,5 +153,6 @@ function easySlider(cfg) {
 
 easySlider();
 easySlider({
+    autoScroll: 'false',
     moduleId: 'easySlider2'
 });
